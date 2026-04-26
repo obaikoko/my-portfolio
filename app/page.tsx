@@ -4,18 +4,25 @@ import { useEffect, useRef, useState } from "react";
 /* ───────────────────────────────────── DATA */
 const EXPERIENCES = [
   {
-    year: "2024–2025",
+    year: "2025–Now",
     role: "Frontend Developer",
     company: "LDB Africa",
     desc: "Led UI development for a fintech platform serving thousands of users across Africa. Architected reusable component systems, integrated real-time APIs, and slashed load times by 40%.",
     tags: ["React", "TypeScript", "REST APIs", "Performance"],
   },
   {
-    year: "2023–2024",
+    year: "2025–2026",
     role: "Backend Mentor",
     company: "Genesys Tech Hub",
     desc: "Shaped the next generation of Nigerian developers — guiding cohorts through server-side architecture, database design, and production-grade API development.",
     tags: ["Node.js", "Mentorship", "API Design", "MongoDB"],
+  },
+  {
+    year: "2023–2024",
+    role: "Web Dev Internship",
+    company: "University of Ibadan",
+    desc: "Immersive training across the full web stack: React on the frontend, Node.js on the backend, MongoDB for data, all wrapped with Git-based collaborative workflows.",
+    tags: ["HTML/CSS", "JavaScript", "React", "Git"],
   },
   {
     year: "2021–Now",
@@ -23,13 +30,6 @@ const EXPERIENCES = [
     company: "Freelance",
     desc: "Built and shipped end-to-end web products for clients across industries — from e-commerce platforms to dashboards — owning the full lifecycle from wireframe to deployment.",
     tags: ["Next.js", "Node.js", "MongoDB", "React"],
-  },
-  {
-    year: "2021–2022",
-    role: "Web Dev Internship",
-    company: "University of Ibadan",
-    desc: "Immersive training across the full web stack: React on the frontend, Node.js on the backend, MongoDB for data, all wrapped with Git-based collaborative workflows.",
-    tags: ["HTML/CSS", "JavaScript", "React", "Git"],
   },
 ];
 
@@ -161,20 +161,44 @@ export default function Portfolio() {
 
       {/* Nav */}
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <a href="#" className="nav-logo" onClick={e => { e.preventDefault(); scrollTo("home"); }}>
+        <a
+          href="#"
+          className="nav-logo"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollTo("home");
+          }}
+        >
           Jesse<span>.</span>
         </a>
         <ul className="nav-links">
-          {["home","about","experience","skills","contact"].map(l => (
+          {["home", "about", "experience", "skills", "contact"].map((l) => (
             <li key={l}>
-              <a href={`#${l}`} className={`nav-link ${active === l ? "active" : ""}`}
-                onClick={e => { e.preventDefault(); scrollTo(l); }}>{l}</a>
+              <a
+                href={`#${l}`}
+                className={`nav-link ${active === l ? "active" : ""}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(l);
+                }}
+              >
+                {l}
+              </a>
             </li>
           ))}
         </ul>
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          style={{ display: "none", background: "none", border: "none", color: "var(--offwhite)", fontSize: 24, cursor: "pointer", zIndex: 60, position: "relative" }}
+          style={{
+            display: "none",
+            background: "none",
+            border: "none",
+            color: "var(--offwhite)",
+            fontSize: 24,
+            cursor: "pointer",
+            zIndex: 60,
+            position: "relative",
+          }}
           className="hamburger"
           aria-label="menu"
         >
@@ -185,9 +209,18 @@ export default function Portfolio() {
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
-        {["home","about","experience","skills","contact"].map(l => (
-          <a key={l} className="mobile-nav-link" href={`#${l}`}
-            onClick={e => { e.preventDefault(); scrollTo(l); }}>{l.toUpperCase()}</a>
+        {["home", "about", "experience", "skills", "contact"].map((l) => (
+          <a
+            key={l}
+            className="mobile-nav-link"
+            href={`#${l}`}
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo(l);
+            }}
+          >
+            {l.toUpperCase()}
+          </a>
         ))}
       </div>
 
@@ -197,34 +230,92 @@ export default function Portfolio() {
         <div className="hero-bg-orb orb-2" />
 
         {/* Floating code card */}
-        <div style={{
-          position: "absolute", right: "6%", top: "22%",
-          background: "var(--surface2)", border: "1px solid var(--border)",
-          borderRadius: 8, padding: "20px 24px",
-          fontFamily: "monospace", fontSize: 12, color: "var(--muted)",
-          lineHeight: 1.8, zIndex: 3, maxWidth: 280,
-          animation: "float 5s ease-in-out infinite",
-          boxShadow: "0 40px 80px rgba(0,0,0,0.5)",
-        }}>
-          <div style={{ color: "var(--accent)", marginBottom: 8, fontSize: 11, letterSpacing: "0.15em" }}>// jesse.config.js</div>
-          <div><span style={{ color: "#c792ea" }}>const</span> <span style={{ color: "#82aaff" }}>dev</span> = {"{"}</div>
-          <div style={{ paddingLeft: 16 }}><span style={{ color: "var(--accent2)" }}>name</span>: <span style={{ color: "#c3e88d" }}>&quot;Jesse Obinna&quot;</span>,</div>
-          <div style={{ paddingLeft: 16 }}><span style={{ color: "var(--accent2)" }}>stack</span>: <span style={{ color: "#c3e88d" }}>&quot;Full-Stack&quot;</span>,</div>
-          <div style={{ paddingLeft: 16 }}><span style={{ color: "var(--accent2)" }}>open</span>: <span style={{ color: "#ff9f7f" }}>true</span>,</div>
-          <div style={{ paddingLeft: 16 }}><span style={{ color: "var(--accent2)" }}>location</span>: <span style={{ color: "#c3e88d" }}>&quot;Abuja 🇳🇬&quot;</span>,</div>
+        <div
+          style={{
+            position: "absolute",
+            right: "6%",
+            top: "22%",
+            background: "var(--surface2)",
+            border: "1px solid var(--border)",
+            borderRadius: 8,
+            padding: "20px 24px",
+            fontFamily: "monospace",
+            fontSize: 12,
+            color: "var(--muted)",
+            lineHeight: 1.8,
+            zIndex: 3,
+            maxWidth: 280,
+            animation: "float 5s ease-in-out infinite",
+            boxShadow: "0 40px 80px rgba(0,0,0,0.5)",
+          }}
+        >
+          <div
+            style={{
+              color: "var(--accent)",
+              marginBottom: 8,
+              fontSize: 11,
+              letterSpacing: "0.15em",
+            }}
+          >
+            // jesse.config.js
+          </div>
+          <div>
+            <span style={{ color: "#c792ea" }}>const</span>{" "}
+            <span style={{ color: "#82aaff" }}>dev</span> = {"{"}
+          </div>
+          <div style={{ paddingLeft: 16 }}>
+            <span style={{ color: "var(--accent2)" }}>name</span>:{" "}
+            <span style={{ color: "#c3e88d" }}>&quot;Jesse Obinna&quot;</span>,
+          </div>
+          <div style={{ paddingLeft: 16 }}>
+            <span style={{ color: "var(--accent2)" }}>stack</span>:{" "}
+            <span style={{ color: "#c3e88d" }}>&quot;Full-Stack&quot;</span>,
+          </div>
+          <div style={{ paddingLeft: 16 }}>
+            <span style={{ color: "var(--accent2)" }}>open</span>:{" "}
+            <span style={{ color: "#ff9f7f" }}>true</span>,
+          </div>
+          <div style={{ paddingLeft: 16 }}>
+            <span style={{ color: "var(--accent2)" }}>location</span>:{" "}
+            <span style={{ color: "#c3e88d" }}>&quot;Abuja 🇳🇬&quot;</span>,
+          </div>
           <div>{"}"}</div>
         </div>
 
         {/* Floating stat card */}
-        <div style={{
-          position: "absolute", right: "5%", bottom: "20%",
-          background: "var(--accent)", color: "var(--black)",
-          borderRadius: 8, padding: "20px 28px",
-          zIndex: 3, animation: "float 6s ease-in-out infinite 1s",
-          boxShadow: "0 30px 60px rgba(200,255,87,0.2)",
-        }}>
-          <div style={{ fontFamily: "Bebas Neue, sans-serif", fontSize: 48, lineHeight: 1 }}>4+</div>
-          <div style={{ fontSize: 12, letterSpacing: "0.1em", marginTop: 4, opacity: 0.7 }}>YEARS BUILDING</div>
+        <div
+          style={{
+            position: "absolute",
+            right: "5%",
+            bottom: "20%",
+            background: "var(--accent)",
+            color: "var(--black)",
+            borderRadius: 8,
+            padding: "20px 28px",
+            zIndex: 3,
+            animation: "float 6s ease-in-out infinite 1s",
+            boxShadow: "0 30px 60px rgba(200,255,87,0.2)",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: "Bebas Neue, sans-serif",
+              fontSize: 48,
+              lineHeight: 1,
+            }}
+          >
+            4+
+          </div>
+          <div
+            style={{
+              fontSize: 12,
+              letterSpacing: "0.1em",
+              marginTop: 4,
+              opacity: 0.7,
+            }}
+          >
+            YEARS BUILDING
+          </div>
         </div>
 
         <div className="hero-content">
@@ -234,31 +325,69 @@ export default function Portfolio() {
           </div>
 
           <h1 className="hero-title">
-            <div className="hero-title-word word-1"><span>JESSE</span></div>
+            <div className="hero-title-word word-1">
+              <span>JESSE</span>
+            </div>
             <br />
-            <div className="hero-title-word word-2"><span style={{ color: "var(--accent)" }}>OBINNA</span></div>
+            <div className="hero-title-word word-2">
+              <span style={{ color: "var(--accent)" }}>OBINNA</span>
+            </div>
             <br />
             <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-              <div className="hero-title-word word-3"><span>BUILDS</span></div>
-              <div className="animate-float" style={{
-                width: 80, height: 80, borderRadius: "50%",
-                overflow: "hidden", border: "2px solid var(--accent)",
-                flexShrink: 0, alignSelf: "flex-end", marginBottom: 12,
-              }}>
-                <img src={HERO_SHAPE_IMG} alt="code" style={{ width: "100%", height: "100%", objectFit: "cover", filter: "grayscale(30%)" }} />
+              <div className="hero-title-word word-3">
+                <span>BUILDS</span>
+              </div>
+              <div
+                className="animate-float"
+                style={{
+                  width: 80,
+                  height: 80,
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  border: "2px solid var(--accent)",
+                  flexShrink: 0,
+                  alignSelf: "flex-end",
+                  marginBottom: 12,
+                }}
+              >
+                <img
+                  src={HERO_SHAPE_IMG}
+                  alt="code"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    filter: "grayscale(30%)",
+                  }}
+                />
               </div>
             </div>
           </h1>
 
           <div className="hero-subtitle-row hero-meta">
             <p className="hero-desc">
-              Crafting scalable web applications with clean code, thoughtful architecture, and pixel-perfect interfaces.
+              Crafting scalable web applications with clean code, thoughtful
+              architecture, and pixel-perfect interfaces.
             </p>
             <div className="hero-ctas">
-              <a href="#experience" className="btn btn-lime" onClick={e => { e.preventDefault(); scrollTo("experience"); }}>
+              <a
+                href="#experience"
+                className="btn btn-lime"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo("experience");
+                }}
+              >
                 View Work ↗
               </a>
-              <a href="#contact" className="btn btn-ghost" onClick={e => { e.preventDefault(); scrollTo("contact"); }}>
+              <a
+                href="#contact"
+                className="btn btn-ghost"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo("contact");
+                }}
+              >
                 Let&apos;s Talk
               </a>
             </div>
@@ -276,7 +405,8 @@ export default function Portfolio() {
         <div className="marquee-track">
           {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((item, i) => (
             <span key={i} className="marquee-item">
-              {item === "•" ? <span className="marquee-dot">✦</span> : item}&nbsp;&nbsp;
+              {item === "•" ? <span className="marquee-dot">✦</span> : item}
+              &nbsp;&nbsp;
             </span>
           ))}
         </div>
@@ -300,18 +430,32 @@ export default function Portfolio() {
           {/* Text column */}
           <div>
             <p className="about-text reveal reveal-delay-1">
-              I&apos;m <strong>Jesse Igweachi Obinna</strong> — a Full-Stack Developer who believes great software is equal parts engineering precision and human empathy. I don&apos;t just write code; I craft <strong>experiences that work</strong>.
+              I&apos;m <strong>Jesse Igweachi Obinna</strong> — a Full-Stack
+              Developer who believes great software is equal parts engineering
+              precision and human empathy. I don&apos;t just write code; I craft{" "}
+              <strong>experiences that work</strong>.
             </p>
-            <p className="about-text reveal reveal-delay-2" style={{ marginTop: 20 }}>
-              My foundation in <strong>Mathematics</strong> (B.Sc, Nnamdi Azikiwe University) means I approach every problem analytically — decomposing complexity, finding elegant solutions, and building systems that scale.
+            <p
+              className="about-text reveal reveal-delay-2"
+              style={{ marginTop: 20 }}
+            >
+              My foundation in <strong>Mathematics</strong> (B.Sc, Nnamdi
+              Azikiwe University) means I approach every problem analytically —
+              decomposing complexity, finding elegant solutions, and building
+              systems that scale.
             </p>
-            <p className="about-text reveal reveal-delay-3" style={{ marginTop: 20 }}>
-              Beyond coding, I&apos;ve mentored the next wave of Nigerian developers at Genesys Tech Hub, and I bring that same collaborative energy to every team I join.
+            <p
+              className="about-text reveal reveal-delay-3"
+              style={{ marginTop: 20 }}
+            >
+              Beyond coding, I&apos;ve mentored the next wave of Nigerian
+              developers at Genesys Tech Hub, and I bring that same
+              collaborative energy to every team I join.
             </p>
 
             <div className="about-stats reveal reveal-delay-4">
               <div className="stat-item">
-                <div className="stat-number">4+</div>
+                <div className="stat-number">5+</div>
                 <div className="stat-label">Years Building</div>
               </div>
               <div className="stat-item">
@@ -319,16 +463,24 @@ export default function Portfolio() {
                 <div className="stat-label">Projects Shipped</div>
               </div>
               <div className="stat-item">
-                <div className="stat-number">50+</div>
+                <div className="stat-number">10+</div>
                 <div className="stat-label">Devs Mentored</div>
               </div>
             </div>
 
-            <div style={{ display: "flex", gap: 16, marginTop: 32 }} className="reveal">
+            <div
+              style={{ display: "flex", gap: 16, marginTop: 32 }}
+              className="reveal"
+            >
               <a href="mailto:jesseobinna7@gmail.com" className="btn btn-lime">
                 📧 Email Me
               </a>
-              <a href="https://github.com/obaikoko" target="_blank" rel="noreferrer" className="btn btn-ghost">
+              <a
+                href="https://github.com/obaikoko"
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn-ghost"
+              >
                 GitHub ↗
               </a>
             </div>
@@ -337,9 +489,22 @@ export default function Portfolio() {
       </section>
 
       {/* ── TECH STRIP ─────────────────────────────────────── */}
-      <div className="tech-strip" style={{ borderBottom: "1px solid var(--border)" }}>
-        <span style={{ fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--muted)", marginRight: 8 }}>Tech I use:</span>
-        {TECHS.map(t => (
+      <div
+        className="tech-strip"
+        style={{ borderBottom: "1px solid var(--border)" }}
+      >
+        <span
+          style={{
+            fontSize: 11,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: "var(--muted)",
+            marginRight: 8,
+          }}
+        >
+          Tech I use:
+        </span>
+        {TECHS.map((t) => (
           <div className="tech-chip" key={t}>
             <div className="tech-chip-dot" />
             {t}
@@ -354,14 +519,21 @@ export default function Portfolio() {
 
         <div className="experience-list">
           {EXPERIENCES.map((exp, i) => (
-            <div className={`exp-item reveal reveal-delay-${Math.min(i + 1, 4)}`} key={i}>
+            <div
+              className={`exp-item reveal reveal-delay-${Math.min(i + 1, 4)}`}
+              key={i}
+            >
               <div className="exp-year">{exp.year}</div>
               <div className="exp-content">
                 <div className="exp-role">{exp.role}</div>
                 <div className="exp-company">{exp.company}</div>
                 <div className="exp-desc">{exp.desc}</div>
                 <div className="exp-tags">
-                  {exp.tags.map(t => <span key={t} className="exp-tag">{t}</span>)}
+                  {exp.tags.map((t) => (
+                    <span key={t} className="exp-tag">
+                      {t}
+                    </span>
+                  ))}
                 </div>
               </div>
               <div className="exp-arrow">↗</div>
@@ -381,7 +553,11 @@ export default function Portfolio() {
               <div className="skill-group-num">{g.num}</div>
               <div className="skill-group-title">{g.title}</div>
               <div className="skill-pills">
-                {g.pills.map(p => <span key={p} className="skill-pill">{p}</span>)}
+                {g.pills.map((p) => (
+                  <span key={p} className="skill-pill">
+                    {p}
+                  </span>
+                ))}
               </div>
             </div>
           ))}
@@ -391,22 +567,40 @@ export default function Portfolio() {
       {/* ── CONTACT ────────────────────────────────────────── */}
       <section id="contact" className="contact-section">
         <div className="contact-bg-text">LET&apos;S TALK</div>
-        <div className="section-label reveal" style={{ justifyContent: "center" }}>Contact</div>
+        <div
+          className="section-label reveal"
+          style={{ justifyContent: "center" }}
+        >
+          Contact
+        </div>
         <h2 className="contact-title reveal">
           GOT A<br />
-          <span style={{ color: "var(--accent)", fontStyle: "italic" }}>PROJECT?</span>
+          <span style={{ color: "var(--accent)", fontStyle: "italic" }}>
+            PROJECT?
+          </span>
         </h2>
         <p className="contact-sub reveal reveal-delay-1">
-          I&apos;m open to full-time roles, freelance projects, and interesting collaborations. Let&apos;s build something great together.
+          I&apos;m open to full-time roles, freelance projects, and interesting
+          collaborations. Let&apos;s build something great together.
         </p>
         <div className="contact-links reveal reveal-delay-2">
           <a href="mailto:jesseobinna7@gmail.com" className="btn btn-lime">
             📧 jesseobinna7@gmail.com
           </a>
-          <a href="https://ng.linkedin.com/in/jesse-igweachia9baa4237" target="_blank" rel="noreferrer" className="btn btn-ghost">
+          <a
+            href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ng.linkedin.com/in/jesse-igweachi-a9baa4237&ved=2ahUKEwi5xfyPiIuUAxWERUEAHQZMPPYQFnoECB8QAQ&usg=AOvVaw0zmFXk_nfjDat_2k4vsCpt"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost"
+          >
             LinkedIn ↗
           </a>
-          <a href="https://github.com/obaikoko" target="_blank" rel="noreferrer" className="btn btn-ghost">
+          <a
+            href="https://github.com/obaikoko"
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost"
+          >
             GitHub ↗
           </a>
         </div>
@@ -415,11 +609,29 @@ export default function Portfolio() {
       {/* ── FOOTER ─────────────────────────────────────────── */}
       <footer className="footer">
         <span>© {new Date().getFullYear()} Jesse Igweachi Obinna</span>
-        <span style={{ color: "var(--muted)" }}>Built with Next.js · Abuja, Nigeria 🇳🇬</span>
+        <span style={{ color: "var(--muted)" }}>
+          Built with Next.js · Abuja, Nigeria 🇳🇬
+        </span>
         <div className="footer-socials">
-          <a href="https://github.com/obaikoko" target="_blank" rel="noreferrer" className="footer-social">GH</a>
-          <a href="https://ng.linkedin.com/in/jesse-igweachia9baa4237" target="_blank" rel="noreferrer" className="footer-social">LI</a>
-          <a href="mailto:jesseobinna7@gmail.com" className="footer-social">EM</a>
+          <a
+            href="https://github.com/obaikoko"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-social"
+          >
+            GH
+          </a>
+          <a
+            href="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://ng.linkedin.com/in/jesse-igweachi-a9baa4237&ved=2ahUKEwi5xfyPiIuUAxWERUEAHQZMPPYQFnoECB8QAQ&usg=AOvVaw0zmFXk_nfjDat_2k4vsCpt"
+            target="_blank"
+            rel="noreferrer"
+            className="footer-social"
+          >
+            LI
+          </a>
+          <a href="mailto:jesseobinna7@gmail.com" className="footer-social">
+            EM
+          </a>
         </div>
       </footer>
     </>
